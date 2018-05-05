@@ -18,9 +18,12 @@ namespace TurkishWordParser
         {
             InitializeComponent();
             comboBoxSet();
+            symRecord.Text = "";
+            liveSym.Text = "";
             databaseSet.Visible = false;
             previousBtn.Visible = false;
             nextBtn.Visible = false;
+            save.Visible = false;
             results.DataSource = words;
             results.DisplayMember = "fullInfo";
         }
@@ -231,9 +234,11 @@ namespace TurkishWordParser
                                     MessageBoxOptions.RightAlign,
                                     true);
                 }
+                if(current.Equals(0))
+                    previousBtn.Visible = false;
+
             }
-            else
-                previousBtn.Visible = false;
+                
 
         }
 
@@ -299,9 +304,33 @@ namespace TurkishWordParser
                                     MessageBoxOptions.RightAlign,
                                     true);
                 }
+
+                if(words.Count < 20)
+                    nextBtn.Visible = false;
+            }
+                           
+        }
+        
+        private void poemArea_TextChanged_1(object sender, EventArgs e)
+        {
+            string mainString = "";
+            int numbSll = 0;
+            int numbSllLive = 0;
+            mainString = poemArea.Text;
+            if (!mainString.Length.Equals(0))
+            {
+                save.Visible = true;
+                mainString = mainString.ToLower();
+                string[] words = mainString.Split('\n');
+
+                var vowels = new HashSet<char> { 'a', 'e', 'i', 'ı', 'o', 'ö', 'u', 'ü' };
+                numbSll = mainString.Count(c => vowels.Contains(c));
+                numbSllLive = words[words.Length - 1].Count(c => vowels.Contains(c));
+                symRecord.Text = numbSll.ToString();
+                liveSym.Text = numbSllLive.ToString();
             }
             else
-                nextBtn.Visible = false;
+                save.Visible = false;
         }
     }
 }
