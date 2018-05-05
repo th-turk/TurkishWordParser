@@ -11,41 +11,48 @@ namespace TurkishWordParser
     class DataAccess
     {
         //getWords
-        public List<Word> GetWords (int numbSll, string lastLetters,int prev)
+        public List<Word> GetWords (int numbSll, string lastLetters,int current)
         {
                 using (IDbConnection conn = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("WORDSDB")))
                 {
-                    return conn.Query<Word>($"SELECT id ,word ,sllnumber " +
-                                            $"FROM (SELECT ROW_NUMBER() OVER (ORDER BY word) AS MyRowNumber, *" +
-                                            $"FROM [TurkishWords].[dbo].[Words]) tbl " +
-                                            $"WHERE word LIKE '%{lastLetters}' " +
-                                            $"and sllnumber = {numbSll} " +
-                                            $"and MyRowNumber BETWEEN {prev} AND {prev+10}" +
-                                            $"ORDER BY sllnumber ASC,word ASC  ").ToList();
+                    return conn.Query<Word>($"  SELECT id ,word ,sllnumber " +
+                                            $"  FROM (SELECT ROW_NUMBER() OVER (ORDER BY sllnumber ASC,word Asc) AS MyRowNumber, *" +
+                                            $"  FROM [TurkishWords].[dbo].[Words] " +
+                                            $"  WHERE word LIKE '%{lastLetters}' " +
+                                            $"  and sllnumber = {numbSll}) tbl" +
+                                            $"  WHERE MyRowNumber BETWEEN {current} AND {current + 10}").ToList();
                 }
         }
-
+        
         //getWords
-        public List<Word> GetWords(string lastLetters)
+        public List<Word> GetWords(string lastLetters,int current)
         {
             using (IDbConnection conn = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("WORDSDB")))
             {
-                return conn.Query<Word>($"Select * " +
-                                        $"FROM [TurkishWords].[dbo].[Words] " +
-                                        $"WHERE word LIKE '%{lastLetters}' " +
-                                        $"ORDER BY sllnumber ASC,word ASC ").ToList();
+                //return conn.Query<Word>($"SELECT id ,word ,sllnumber " +
+                //                        $"FROM (SELECT ROW_NUMBER() OVER (ORDER BY sllnumber ASC,word ASC) AS MyRowNumber, *" +
+                //                        $"FROM [TurkishWords].[dbo].[Words] " +
+                //                        $"WHERE word LIKE '%{lastLetters}' ) tbl" +
+                //                        $"WHERE MyRowNumber BETWEEN {current} AND {current + 10}").ToList();
+
+                return conn.Query<Word>($"  SELECT id ,word ,sllnumber FROM" +
+                                        $"  (SELECT ROW_NUMBER() OVER(ORDER BY sllnumber ASC, word Asc) AS MyRowNumber, *" +
+                                        $"  FROM[TurkishWords].[dbo].[Words]" +
+                                        $"  Where word Like '%{lastLetters}') tbl" +
+                                        $"  WHERE MyRowNumber BETWEEN {current} AND {current+10} ").ToList();
             }
         }
 
         //getWords
-        public List<Word> GetWords(int numbSll)
+        public List<Word> GetWords(int numbSll,int current)
         {
             using (IDbConnection conn = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("WORDSDB")))
             {
-                return conn.Query<Word>($"Select * " +
-                                        $"FROM [TurkishWords].[dbo].[Words] " +
-                                        $"WHERE sllnumber = {numbSll} " +
-                                        $"ORDER BY sllnumber ASC,word ASC").ToList();
+                return conn.Query<Word>($"  SELECT id ,word ,sllnumber " +
+                                        $"  FROM (SELECT ROW_NUMBER() OVER (ORDER BY sllnumber ASC,word ASC) AS MyRowNumber, *" +
+                                        $"  FROM [TurkishWords].[dbo].[Words] " +
+                                        $"  WHERE sllnumber = {numbSll} ) tbl" +
+                                        $"  WHERE MyRowNumber BETWEEN {current} AND {current + 10}").ToList();
             }
         }
 

@@ -19,6 +19,8 @@ namespace TurkishWordParser
             InitializeComponent();
             comboBoxSet();
             databaseSet.Visible = false;
+            previousBtn.Visible = false;
+            nextBtn.Visible = false;
             results.DataSource = words;
             results.DisplayMember = "fullInfo";
         }
@@ -32,16 +34,20 @@ namespace TurkishWordParser
             }
         }
 
+        DataAccess db = new DataAccess();
+        int sllIndex;
+        string lastLetter;
+        int sllnum;
+        bool sllFlag = false;
+        bool letterFlag = false;
         private void button1_Click(object sender, EventArgs e)
         {
-            bool sllFlag = false;
-            bool letterFlag = false;
+            
+            current =  0;
 
-            int sllIndex = sllNumb.SelectedIndex;
-            string lastLetter = lastLetters.Text.Trim();
-
-            DataAccess db = new DataAccess();
-
+            sllIndex = sllNumb.SelectedIndex;
+            lastLetter = lastLetters.Text.Trim();
+            
             if (sllIndex > -1)
                 sllFlag = true;
             if (!lastLetter.Equals(""))
@@ -50,25 +56,46 @@ namespace TurkishWordParser
             if(letterFlag && sllFlag)
             {
                 //both  area setted
-                
-                int sllnum = Convert.ToInt32(sllNumb.Items[sllIndex]);
+                sllnum = Convert.ToInt32(sllNumb.Items[sllIndex]);
          
-                words = db.GetWords(sllnum, lastLetter,prev);
-                listBoxUpdate(words);
+                words = db.GetWords(sllnum, lastLetter,current);
+                if (!words.Count.Equals(0))
+                {
+                    nextBtn.Visible = true;
+                    listBoxUpdate(words);
+                    current += 10;
+                }
+                else
+                    emptyMessage();
 
             }
             else if (letterFlag && !sllFlag )
             {
                 //sll  is empty
-                words = db.GetWords(lastLetter);
-                listBoxUpdate(words);
+                words = db.GetWords(lastLetter,current);
+                if (!words.Count.Equals(0))
+                {
+                    nextBtn.Visible = true;
+                    listBoxUpdate(words);
+                    current += 10;
+                }
+                else
+                    emptyMessage();
+
             }
             else if (!letterFlag && sllFlag)
             {
                 //letter  is empty
-                int sllnum = Convert.ToInt32(sllNumb.Items[sllIndex]);
-                words = db.GetWords(sllnum);
-                listBoxUpdate(words);
+                sllnum = Convert.ToInt32(sllNumb.Items[sllIndex]);
+                words = db.GetWords(sllnum,current);
+                if (!words.Count.Equals(0))
+                {
+                    nextBtn.Visible = true;
+                    listBoxUpdate(words);
+                    current += 10;
+                }
+                else
+                    emptyMessage();
             }
             else
             {
@@ -83,7 +110,19 @@ namespace TurkishWordParser
             }
             
         }
-
+        //Words List Empty
+        public void emptyMessage()
+        {
+            // both area are empty
+            MessageBox.Show("Sonuç Bulunamadı \n" +
+                            "Yeni Arama Yapınız",
+                            "Critical Warning",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information,
+                            MessageBoxDefaultButton.Button1,
+                            MessageBoxOptions.RightAlign,
+                            true);
+        }
         //ListBox Update
         public  void listBoxUpdate(List<Word> words)
         {
@@ -128,16 +167,139 @@ namespace TurkishWordParser
 
         }
 
-        int prev = 0;
+        int current = 0;
         private void previousBtn_Click(object sender, EventArgs e)
         {
-            prev+=10;
+            if (!(current<=10))
+            {
+                current -= 10;
+                
+                if (sllIndex > -1)
+                    sllFlag = true;
+                if (!lastLetter.Equals(""))
+                    letterFlag = true;
+
+                if (letterFlag && sllFlag)
+                {
+                    //both  area setted
+                    words = db.GetWords(sllnum, lastLetter, current);
+                    if (!words.Count.Equals(0))
+                    {
+                        listBoxUpdate(words);
+                        current -= 10;
+                    }
+                    else
+                        emptyMessage();
+
+                }
+                else if (letterFlag && !sllFlag)
+                {
+                    //sll  is empty
+                    words = db.GetWords(lastLetter, current);
+                    if (!words.Count.Equals(0))
+                    {
+                        listBoxUpdate(words);
+                        current -= 10;
+                    }
+                    else
+                        emptyMessage();
+
+                }
+                else if (!letterFlag && sllFlag)
+                {
+                    //letter  is empty
+                    words = db.GetWords(sllnum, current);
+                    if (!words.Count.Equals(0))
+                    {
+                        listBoxUpdate(words);
+                        current -= 10;
+                    }
+                    else
+                        emptyMessage();
+                }
+                else
+                {
+                    // both area are empty
+                    MessageBox.Show("Alanları Doldurunuz ",
+                                    "Critical Warning",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Warning,
+                                    MessageBoxDefaultButton.Button1,
+                                    MessageBoxOptions.RightAlign,
+                                    true);
+                }
+            }
+            else
+                previousBtn.Visible = false;
 
         }
 
         private void nextBtn_Click(object sender, EventArgs e)
         {
+            if (!(words.Count<10))
+            {
+                current += 10;
 
+                if (sllIndex > -1)
+                    sllFlag = true;
+                if (!lastLetter.Equals(""))
+                    letterFlag = true;
+
+                if (letterFlag && sllFlag)
+                {
+                    //both  area setted
+                    words = db.GetWords(sllnum, lastLetter, current);
+                    if (!words.Count.Equals(0))
+                    {
+                        previousBtn.Visible = true;
+                        listBoxUpdate(words);
+                        current += 10;
+                    }
+                    else
+                        emptyMessage();
+
+                }
+                else if (letterFlag && !sllFlag)
+                {
+                    //sll  is empty
+                    words = db.GetWords(lastLetter, current);
+                    if (!words.Count.Equals(0))
+                    {
+                        previousBtn.Visible = true;
+                        listBoxUpdate(words);
+                        current += 10;
+                    }
+                    else
+                        emptyMessage();
+
+                }
+                else if (!letterFlag && sllFlag)
+                {
+                    //letter  is empty
+                    words = db.GetWords(sllnum, current);
+                    if (!words.Count.Equals(0))
+                    {
+                        previousBtn.Visible = true;
+                        listBoxUpdate(words);
+                        current += 10;
+                    }
+                    else
+                        emptyMessage();
+                }
+                else
+                {
+                    // both area are empty
+                    MessageBox.Show("Alanları Doldurunuz ",
+                                    "Critical Warning",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Warning,
+                                    MessageBoxDefaultButton.Button1,
+                                    MessageBoxOptions.RightAlign,
+                                    true);
+                }
+            }
+            else
+                nextBtn.Visible = false;
         }
     }
 }
