@@ -84,7 +84,6 @@
             // 
             // sllNumb
             // 
-            this.sllNumb.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
             this.sllNumb.FormattingEnabled = true;
             this.sllNumb.Location = new System.Drawing.Point(7, 21);
             this.sllNumb.Name = "sllNumb";

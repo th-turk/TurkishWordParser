@@ -32,6 +32,7 @@ namespace TurkishWordParser
             {
                 sllNumb.Items.Add(i);
             }
+            sllNumb.SelectedIndex = -1;
         }
 
         DataAccess db = new DataAccess();
@@ -40,19 +41,19 @@ namespace TurkishWordParser
         int sllnum;
         bool sllFlag = false;
         bool letterFlag = false;
+        int current = 0;
+
         private void button1_Click(object sender, EventArgs e)
         {
-            
             current =  0;
-
             sllIndex = sllNumb.SelectedIndex;
             lastLetter = lastLetters.Text.Trim();
-            
+            //MessageBox.Show("begin   " + current.ToString());
             if (sllIndex > -1)
                 sllFlag = true;
             if (!lastLetter.Equals(""))
                 letterFlag = true;
-
+            //MessageBox.Show(sllFlag + "  " + letterFlag);
             if(letterFlag && sllFlag)
             {
                 //both  area setted
@@ -62,8 +63,9 @@ namespace TurkishWordParser
                 if (!words.Count.Equals(0))
                 {
                     nextBtn.Visible = true;
+                    previousBtn.Visible = false;
                     listBoxUpdate(words);
-                    current += 10;
+                    current += 20;
                 }
                 else
                     emptyMessage();
@@ -76,8 +78,9 @@ namespace TurkishWordParser
                 if (!words.Count.Equals(0))
                 {
                     nextBtn.Visible = true;
+                    previousBtn.Visible = false;
                     listBoxUpdate(words);
-                    current += 10;
+                    current += 20;
                 }
                 else
                     emptyMessage();
@@ -91,8 +94,9 @@ namespace TurkishWordParser
                 if (!words.Count.Equals(0))
                 {
                     nextBtn.Visible = true;
+                    previousBtn.Visible = false;
                     listBoxUpdate(words);
-                    current += 10;
+                    current += 20;
                 }
                 else
                     emptyMessage();
@@ -122,6 +126,8 @@ namespace TurkishWordParser
                             MessageBoxDefaultButton.Button1,
                             MessageBoxOptions.RightAlign,
                             true);
+            nextBtn.Visible = false;
+            previousBtn.Visible = false;
         }
         //ListBox Update
         public  void listBoxUpdate(List<Word> words)
@@ -167,13 +173,13 @@ namespace TurkishWordParser
 
         }
 
-        int current = 0;
         private void previousBtn_Click(object sender, EventArgs e)
         {
-            if (!(current<=10))
+            if (!(current.Equals(0)))
             {
-                current -= 10;
-                
+                current -= 20;
+                nextBtn.Visible = true;
+                //MessageBox.Show("prec   "+current.ToString());
                 if (sllIndex > -1)
                     sllFlag = true;
                 if (!lastLetter.Equals(""))
@@ -186,7 +192,6 @@ namespace TurkishWordParser
                     if (!words.Count.Equals(0))
                     {
                         listBoxUpdate(words);
-                        current -= 10;
                     }
                     else
                         emptyMessage();
@@ -199,7 +204,6 @@ namespace TurkishWordParser
                     if (!words.Count.Equals(0))
                     {
                         listBoxUpdate(words);
-                        current -= 10;
                     }
                     else
                         emptyMessage();
@@ -212,7 +216,6 @@ namespace TurkishWordParser
                     if (!words.Count.Equals(0))
                     {
                         listBoxUpdate(words);
-                        current -= 10;
                     }
                     else
                         emptyMessage();
@@ -236,10 +239,9 @@ namespace TurkishWordParser
 
         private void nextBtn_Click(object sender, EventArgs e)
         {
-            if (!(words.Count<10))
+            if (!(words.Count<20))
             {
-                current += 10;
-
+                //MessageBox.Show("next   " + current.ToString());
                 if (sllIndex > -1)
                     sllFlag = true;
                 if (!lastLetter.Equals(""))
@@ -253,7 +255,7 @@ namespace TurkishWordParser
                     {
                         previousBtn.Visible = true;
                         listBoxUpdate(words);
-                        current += 10;
+                        current += 20;
                     }
                     else
                         emptyMessage();
@@ -267,7 +269,7 @@ namespace TurkishWordParser
                     {
                         previousBtn.Visible = true;
                         listBoxUpdate(words);
-                        current += 10;
+                        current += 20;
                     }
                     else
                         emptyMessage();
@@ -281,7 +283,7 @@ namespace TurkishWordParser
                     {
                         previousBtn.Visible = true;
                         listBoxUpdate(words);
-                        current += 10;
+                        current += 20;
                     }
                     else
                         emptyMessage();

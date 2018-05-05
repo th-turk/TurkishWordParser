@@ -20,7 +20,7 @@ namespace TurkishWordParser
                                             $"  FROM [TurkishWords].[dbo].[Words] " +
                                             $"  WHERE word LIKE '%{lastLetters}' " +
                                             $"  and sllnumber = {numbSll}) tbl" +
-                                            $"  WHERE MyRowNumber BETWEEN {current} AND {current + 10}").ToList();
+                                            $"  WHERE MyRowNumber BETWEEN {current} AND {current + 20}").ToList();
                 }
         }
         
@@ -29,17 +29,11 @@ namespace TurkishWordParser
         {
             using (IDbConnection conn = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("WORDSDB")))
             {
-                //return conn.Query<Word>($"SELECT id ,word ,sllnumber " +
-                //                        $"FROM (SELECT ROW_NUMBER() OVER (ORDER BY sllnumber ASC,word ASC) AS MyRowNumber, *" +
-                //                        $"FROM [TurkishWords].[dbo].[Words] " +
-                //                        $"WHERE word LIKE '%{lastLetters}' ) tbl" +
-                //                        $"WHERE MyRowNumber BETWEEN {current} AND {current + 10}").ToList();
-
                 return conn.Query<Word>($"  SELECT id ,word ,sllnumber FROM" +
                                         $"  (SELECT ROW_NUMBER() OVER(ORDER BY sllnumber ASC, word Asc) AS MyRowNumber, *" +
                                         $"  FROM[TurkishWords].[dbo].[Words]" +
                                         $"  Where word Like '%{lastLetters}') tbl" +
-                                        $"  WHERE MyRowNumber BETWEEN {current} AND {current+10} ").ToList();
+                                        $"  WHERE MyRowNumber BETWEEN {current} AND {current+20} ").ToList();
             }
         }
 
@@ -52,7 +46,7 @@ namespace TurkishWordParser
                                         $"  FROM (SELECT ROW_NUMBER() OVER (ORDER BY sllnumber ASC,word ASC) AS MyRowNumber, *" +
                                         $"  FROM [TurkishWords].[dbo].[Words] " +
                                         $"  WHERE sllnumber = {numbSll} ) tbl" +
-                                        $"  WHERE MyRowNumber BETWEEN {current} AND {current + 10}").ToList();
+                                        $"  WHERE MyRowNumber BETWEEN {current} AND {current + 20}").ToList();
             }
         }
 
