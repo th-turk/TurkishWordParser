@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -140,6 +141,7 @@ namespace TurkishWordParser
             results.DataSource = words;
             results.DisplayMember = "fullInfo";
         }
+        //Add new Words to Databasee 
         public void transferData(string[] lines)
         {
             foreach (var item in lines)
@@ -162,6 +164,7 @@ namespace TurkishWordParser
 
             MessageBox.Show("Transfer Completed");
         }
+        //Words Read and Add Button
         private void button2_Click(object sender, EventArgs e)
         {
             string[] lines = System.IO.File.ReadAllLines(@"D:\TurkishWords\words.txt", Encoding.UTF8);
@@ -175,7 +178,7 @@ namespace TurkishWordParser
             thread1.Start();
 
         }
-
+        //Previous element in database 20 items 
         private void previousBtn_Click(object sender, EventArgs e)
         {
             if (!(current.Equals(0)))
@@ -241,7 +244,7 @@ namespace TurkishWordParser
                 
 
         }
-
+        //Next elemeny in database 20 items 
         private void nextBtn_Click(object sender, EventArgs e)
         {
             if (!(words.Count<20))
@@ -310,7 +313,7 @@ namespace TurkishWordParser
             }
                            
         }
-        
+        //Sym Counter live While Write Poem 
         private void poemArea_TextChanged_1(object sender, EventArgs e)
         {
             string mainString = "";
@@ -331,6 +334,27 @@ namespace TurkishWordParser
             }
             else
                 save.Visible = false;
+        }
+
+        private void save_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFile = new SaveFileDialog();
+            
+            saveFile.DefaultExt = "txt";
+            saveFile.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+            saveFile.FilterIndex = 2;
+            if (saveFile.ShowDialog() == DialogResult.OK)
+            {
+                StreamWriter sw = new StreamWriter(saveFile.FileName);
+
+                string poem = poemArea.Text;
+                string[] coloums = poem.Split('\n');
+                foreach (var coloum in coloums)
+                {
+                    sw.WriteLine(coloum);
+                }
+                sw.Close();
+            }
         }
     }
 }
