@@ -53,6 +53,7 @@
             this._11 = new System.Windows.Forms.RadioButton();
             this._8 = new System.Windows.Forms.RadioButton();
             this._7 = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -151,7 +152,7 @@
             this.previousBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.previousBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.previousBtn.ForeColor = System.Drawing.SystemColors.Info;
-            this.previousBtn.Location = new System.Drawing.Point(19, 447);
+            this.previousBtn.Location = new System.Drawing.Point(19, 441);
             this.previousBtn.Name = "previousBtn";
             this.previousBtn.Size = new System.Drawing.Size(75, 23);
             this.previousBtn.TabIndex = 2;
@@ -167,7 +168,7 @@
             this.nextBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.nextBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nextBtn.ForeColor = System.Drawing.SystemColors.Info;
-            this.nextBtn.Location = new System.Drawing.Point(185, 447);
+            this.nextBtn.Location = new System.Drawing.Point(185, 441);
             this.nextBtn.Name = "nextBtn";
             this.nextBtn.Size = new System.Drawing.Size(75, 23);
             this.nextBtn.TabIndex = 3;
@@ -187,6 +188,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.symGroup);
             this.panel2.Controls.Add(this.save);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.label5);
@@ -196,7 +198,7 @@
             this.panel2.Controls.Add(this.poemArea);
             this.panel2.Location = new System.Drawing.Point(267, 98);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(257, 372);
+            this.panel2.Size = new System.Drawing.Size(323, 372);
             this.panel2.TabIndex = 6;
             // 
             // save
@@ -207,9 +209,9 @@
             this.save.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.save.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.save.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.save.Location = new System.Drawing.Point(6, 341);
+            this.save.Location = new System.Drawing.Point(201, 341);
             this.save.Name = "save";
-            this.save.Size = new System.Drawing.Size(245, 28);
+            this.save.Size = new System.Drawing.Size(112, 28);
             this.save.TabIndex = 18;
             this.save.Text = "Kaydet";
             this.save.UseVisualStyleBackColor = false;
@@ -274,7 +276,7 @@
             this.poemArea.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.poemArea.Location = new System.Drawing.Point(6, 52);
             this.poemArea.Name = "poemArea";
-            this.poemArea.Size = new System.Drawing.Size(248, 245);
+            this.poemArea.Size = new System.Drawing.Size(310, 245);
             this.poemArea.TabIndex = 12;
             this.poemArea.Text = "";
             this.poemArea.TextChanged += new System.EventHandler(this.poemArea_TextChanged_1);
@@ -292,14 +294,15 @@
             // symGroup
             // 
             this.symGroup.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.symGroup.Controls.Add(this.radioButton1);
             this.symGroup.Controls.Add(this._11);
             this.symGroup.Controls.Add(this._8);
             this.symGroup.Controls.Add(this._7);
             this.symGroup.Cursor = System.Windows.Forms.Cursors.Default;
             this.symGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.symGroup.Location = new System.Drawing.Point(365, 98);
+            this.symGroup.Location = new System.Drawing.Point(87, 3);
             this.symGroup.Name = "symGroup";
-            this.symGroup.Size = new System.Drawing.Size(156, 46);
+            this.symGroup.Size = new System.Drawing.Size(229, 46);
             this.symGroup.TabIndex = 19;
             this.symGroup.TabStop = false;
             this.symGroup.Text = "Hece Ölçüsü";
@@ -342,13 +345,25 @@
             this._7.UseVisualStyleBackColor = true;
             this._7.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
             // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButton1.Location = new System.Drawing.Point(153, 20);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(73, 20);
+            this.radioButton1.TabIndex = 3;
+            this.radioButton1.Text = "Serbest";
+            this.radioButton1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.ClientSize = new System.Drawing.Size(527, 472);
-            this.Controls.Add(this.symGroup);
+            this.ClientSize = new System.Drawing.Size(596, 472);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.label3);
@@ -398,6 +413,7 @@
         private System.Windows.Forms.RadioButton _11;
         private System.Windows.Forms.RadioButton _8;
         private System.Windows.Forms.RadioButton _7;
+        private System.Windows.Forms.RadioButton radioButton1;
     }
 }
 

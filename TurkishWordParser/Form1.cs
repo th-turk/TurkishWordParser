@@ -332,8 +332,6 @@ namespace TurkishWordParser
         {
             error.Clear();
             string mainString = "";
-            int numbSll = 0;
-            int numbSllLive = 0;
             mainString = poemArea.Text;
             if (!mainString.Length.Equals(0))
             {
@@ -341,6 +339,7 @@ namespace TurkishWordParser
                 mainString = mainString.ToLower();
                 string[] words = mainString.Split('\n');
 
+                if(symSize !=1000)
                 if (mainString[mainString.Length - 1].Equals('\n'))
                 {
                     if (words[words.Length - 1].Length.Equals(0)) 
@@ -408,8 +407,16 @@ namespace TurkishWordParser
                 //Code to use radioButton's properties to do something useful.
                 if (radioButton.Checked)
                 {
-                    int index = radioButton.Text.LastIndexOf("'");
-                    symSize = Convert.ToInt16(radioButton.Text.Substring(0, index));
+                    if (radioButton.Text == "Serbest")
+                    {
+                        symSize = 1000;
+                    }
+                    else
+                    {
+                        int index = radioButton.Text.LastIndexOf("'");
+                        symSize = Convert.ToInt16(radioButton.Text.Substring(0, index));
+                    }
+                    
                 }
 
             }
