@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RichTextBoxExtensions.cs" />
     <Compile Include="DataAccess.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -89,6 +90,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icon5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pencil_inspiration .png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

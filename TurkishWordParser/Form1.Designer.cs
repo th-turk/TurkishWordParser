@@ -49,9 +49,14 @@
             this.label4 = new System.Windows.Forms.Label();
             this.poemArea = new System.Windows.Forms.RichTextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.symGroup = new System.Windows.Forms.GroupBox();
+            this._11 = new System.Windows.Forms.RadioButton();
+            this._8 = new System.Windows.Forms.RadioButton();
+            this._7 = new System.Windows.Forms.RadioButton();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.symGroup.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -189,9 +194,9 @@
             this.panel2.Controls.Add(this.symRecord);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.poemArea);
-            this.panel2.Location = new System.Drawing.Point(267, 123);
+            this.panel2.Location = new System.Drawing.Point(267, 98);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(257, 347);
+            this.panel2.Size = new System.Drawing.Size(257, 372);
             this.panel2.TabIndex = 6;
             // 
             // save
@@ -202,7 +207,7 @@
             this.save.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.save.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.save.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.save.Location = new System.Drawing.Point(6, 316);
+            this.save.Location = new System.Drawing.Point(6, 341);
             this.save.Name = "save";
             this.save.Size = new System.Drawing.Size(245, 28);
             this.save.TabIndex = 18;
@@ -214,7 +219,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(5, 294);
+            this.label6.Location = new System.Drawing.Point(5, 319);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(160, 19);
             this.label6.TabIndex = 17;
@@ -224,18 +229,18 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(5, 275);
+            this.label5.Location = new System.Drawing.Point(5, 300);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(145, 19);
+            this.label5.Size = new System.Drawing.Size(113, 19);
             this.label5.TabIndex = 16;
-            this.label5.Text = "Toplam Hece Sayısı:";
+            this.label5.Text = "Hatalı Satırlar:";
             // 
             // liveSym
             // 
             this.liveSym.AutoSize = true;
             this.liveSym.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.liveSym.ForeColor = System.Drawing.Color.LightGray;
-            this.liveSym.Location = new System.Drawing.Point(171, 294);
+            this.liveSym.Location = new System.Drawing.Point(171, 319);
             this.liveSym.Name = "liveSym";
             this.liveSym.Size = new System.Drawing.Size(32, 19);
             this.liveSym.TabIndex = 15;
@@ -245,8 +250,8 @@
             // 
             this.symRecord.AutoSize = true;
             this.symRecord.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.symRecord.ForeColor = System.Drawing.Color.LightGray;
-            this.symRecord.Location = new System.Drawing.Point(171, 275);
+            this.symRecord.ForeColor = System.Drawing.Color.Red;
+            this.symRecord.Location = new System.Drawing.Point(171, 300);
             this.symRecord.Name = "symRecord";
             this.symRecord.Size = new System.Drawing.Size(63, 19);
             this.symRecord.TabIndex = 14;
@@ -256,7 +261,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Monotype Corsiva", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(6, 8);
+            this.label4.Location = new System.Drawing.Point(6, 33);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(75, 18);
             this.label4.TabIndex = 13;
@@ -266,7 +271,8 @@
             // 
             this.poemArea.BackColor = System.Drawing.Color.SkyBlue;
             this.poemArea.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.poemArea.Location = new System.Drawing.Point(6, 27);
+            this.poemArea.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.poemArea.Location = new System.Drawing.Point(6, 52);
             this.poemArea.Name = "poemArea";
             this.poemArea.Size = new System.Drawing.Size(248, 245);
             this.poemArea.TabIndex = 12;
@@ -275,13 +281,66 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackgroundImage = global::TurkishWordParser.Properties.Resources.icon5;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox1.Location = new System.Drawing.Point(469, 12);
+            this.pictureBox1.BackgroundImage = global::TurkishWordParser.Properties.Resources.pencil_inspiration_;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Location = new System.Drawing.Point(435, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(46, 42);
+            this.pictureBox1.Size = new System.Drawing.Size(80, 80);
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;
+            // 
+            // symGroup
+            // 
+            this.symGroup.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.symGroup.Controls.Add(this._11);
+            this.symGroup.Controls.Add(this._8);
+            this.symGroup.Controls.Add(this._7);
+            this.symGroup.Cursor = System.Windows.Forms.Cursors.Default;
+            this.symGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.symGroup.Location = new System.Drawing.Point(365, 98);
+            this.symGroup.Name = "symGroup";
+            this.symGroup.Size = new System.Drawing.Size(156, 46);
+            this.symGroup.TabIndex = 19;
+            this.symGroup.TabStop = false;
+            this.symGroup.Text = "Hece Ölçüsü";
+            // 
+            // _11
+            // 
+            this._11.AutoSize = true;
+            this._11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._11.Location = new System.Drawing.Point(102, 20);
+            this._11.Name = "_11";
+            this._11.Size = new System.Drawing.Size(49, 20);
+            this._11.TabIndex = 2;
+            this._11.Text = "11\'li";
+            this._11.UseVisualStyleBackColor = true;
+            this._11.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
+            // 
+            // _8
+            // 
+            this._8.AutoSize = true;
+            this._8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._8.Location = new System.Drawing.Point(54, 20);
+            this._8.Name = "_8";
+            this._8.Size = new System.Drawing.Size(42, 20);
+            this._8.TabIndex = 1;
+            this._8.Text = "8\'li";
+            this._8.UseVisualStyleBackColor = true;
+            this._8.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
+            // 
+            // _7
+            // 
+            this._7.AutoSize = true;
+            this._7.Checked = true;
+            this._7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._7.Location = new System.Drawing.Point(6, 20);
+            this._7.Name = "_7";
+            this._7.Size = new System.Drawing.Size(42, 20);
+            this._7.TabIndex = 0;
+            this._7.TabStop = true;
+            this._7.Text = "7\'li";
+            this._7.UseVisualStyleBackColor = true;
+            this._7.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
             // 
             // Form1
             // 
@@ -289,6 +348,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.ClientSize = new System.Drawing.Size(527, 472);
+            this.Controls.Add(this.symGroup);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.label3);
@@ -296,6 +356,7 @@
             this.Controls.Add(this.previousBtn);
             this.Controls.Add(this.results);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "İlham Yağmuru";
@@ -304,6 +365,8 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.symGroup.ResumeLayout(false);
+            this.symGroup.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -331,6 +394,10 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.RichTextBox poemArea;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.GroupBox symGroup;
+        private System.Windows.Forms.RadioButton _11;
+        private System.Windows.Forms.RadioButton _8;
+        private System.Windows.Forms.RadioButton _7;
     }
 }
 

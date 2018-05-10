@@ -14,6 +14,7 @@ namespace TurkishWordParser
 {
     public partial class Form1 : Form
     {
+        
         List<Word> words = new List<Word>();
         public Form1()
         {
@@ -39,6 +40,7 @@ namespace TurkishWordParser
             sllNumb.SelectedIndex = -1;
         }
 
+        HashSet<char> vowels = new HashSet<char> { 'a', 'e', 'i', 'ı', 'o', 'ö', 'u', 'ü' };
         DataAccess db = new DataAccess();
         int sllIndex;
         string lastLetter;
@@ -46,6 +48,9 @@ namespace TurkishWordParser
         bool sllFlag = false;
         bool letterFlag = false;
         int current = 0;
+        bool clickFlag = false;
+        int symSize = 7;
+        List<int> error = new List<int> { };
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -183,6 +188,11 @@ namespace TurkishWordParser
         {
             if (!(current.Equals(0)))
             {
+                if (!clickFlag)
+                {
+                    current -= 20;
+                    clickFlag = true;
+                }
                 current -= 20;
                 nextBtn.Visible = true;
                 //MessageBox.Show("prec   "+current.ToString());
@@ -254,7 +264,11 @@ namespace TurkishWordParser
                     sllFlag = true;
                 if (!lastLetter.Equals(""))
                     letterFlag = true;
-
+                if(clickFlag)
+                {
+                    current += 20;
+                    clickFlag = false;
+                }
                 if (letterFlag && sllFlag)
                 {
                     //both  area setted
@@ -316,6 +330,7 @@ namespace TurkishWordParser
         //Sym Counter live While Write Poem 
         private void poemArea_TextChanged_1(object sender, EventArgs e)
         {
+            error.Clear();
             string mainString = "";
             int numbSll = 0;
             int numbSllLive = 0;
@@ -326,16 +341,42 @@ namespace TurkishWordParser
                 mainString = mainString.ToLower();
                 string[] words = mainString.Split('\n');
 
-                var vowels = new HashSet<char> { 'a', 'e', 'i', 'ı', 'o', 'ö', 'u', 'ü' };
-                numbSll = mainString.Count(c => vowels.Contains(c));
-                numbSllLive = words[words.Length - 1].Count(c => vowels.Contains(c));
-                symRecord.Text = numbSll.ToString();
-                liveSym.Text = numbSllLive.ToString();
+                if (mainString[mainString.Length - 1].Equals('\n'))
+                {
+                    if (words[words.Length - 1].Length.Equals(0)) 
+                        for (int i = 0; i < words.Length-1; i++)
+                        {
+                            int symSizelc = words[i].Count(c => vowels.Contains(c));
+                            liveSym.Text = symSizelc.ToString();
+                            if (symSizelc != symSize)
+                            {
+                                if (!error.Contains(i + 1))
+                                {
+                                    error.Add(i + 1);
+                                }
+                            }
+                        }
+                    symRecord.Text = "";
+                    foreach (var item in error)
+                    {
+                        symRecord.Text += item.ToString() + " ";
+                    }
+                    
+                }
+                int symSizelv = words[words.Length-1].Count(c => vowels.Contains(c));
+
+                if(symSizelv < symSize)
+                   liveSym.ForeColor = Color.Blue;
+                else if (symSizelv == symSize)
+                    liveSym.ForeColor = Color.Green;
+                else
+                    liveSym.ForeColor = Color.Red;
+                liveSym.Text = symSizelv.ToString();
             }
             else
                 save.Visible = false;
         }
-
+        //Save Poem
         private void save_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFile = new SaveFileDialog();
@@ -354,6 +395,23 @@ namespace TurkishWordParser
                     sw.WriteLine(coloum);
                 }
                 sw.Close();
+            }
+        }
+
+
+        //Select Radio button selected 
+        private void radioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (sender is RadioButton)
+            {
+                RadioButton radioButton = (RadioButton)sender;
+                //Code to use radioButton's properties to do something useful.
+                if (radioButton.Checked)
+                {
+                    int index = radioButton.Text.LastIndexOf("'");
+                    symSize = Convert.ToInt16(radioButton.Text.Substring(0, index));
+                }
+
             }
         }
     }
