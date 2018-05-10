@@ -50,6 +50,7 @@ namespace TurkishWordParser
         int current = 0;
         bool clickFlag = false;
         int symSize = 7;
+        bool poemClr = false;
         List<int> error = new List<int> { };
 
         private void button1_Click(object sender, EventArgs e)
