@@ -41,6 +41,11 @@
             this.nextBtn = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.symGroup = new System.Windows.Forms.GroupBox();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this._11 = new System.Windows.Forms.RadioButton();
+            this._8 = new System.Windows.Forms.RadioButton();
+            this._7 = new System.Windows.Forms.RadioButton();
             this.save = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -49,15 +54,10 @@
             this.label4 = new System.Windows.Forms.Label();
             this.poemArea = new System.Windows.Forms.RichTextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.symGroup = new System.Windows.Forms.GroupBox();
-            this._11 = new System.Windows.Forms.RadioButton();
-            this._8 = new System.Windows.Forms.RadioButton();
-            this._7 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.symGroup.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -201,6 +201,73 @@
             this.panel2.Size = new System.Drawing.Size(323, 372);
             this.panel2.TabIndex = 6;
             // 
+            // symGroup
+            // 
+            this.symGroup.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.symGroup.Controls.Add(this.radioButton1);
+            this.symGroup.Controls.Add(this._11);
+            this.symGroup.Controls.Add(this._8);
+            this.symGroup.Controls.Add(this._7);
+            this.symGroup.Cursor = System.Windows.Forms.Cursors.Default;
+            this.symGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.symGroup.Location = new System.Drawing.Point(87, 3);
+            this.symGroup.Name = "symGroup";
+            this.symGroup.Size = new System.Drawing.Size(229, 46);
+            this.symGroup.TabIndex = 19;
+            this.symGroup.TabStop = false;
+            this.symGroup.Text = "Hece Ölçüsü";
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButton1.Location = new System.Drawing.Point(153, 20);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(73, 20);
+            this.radioButton1.TabIndex = 3;
+            this.radioButton1.Text = "Serbest";
+            this.radioButton1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
+            // 
+            // _11
+            // 
+            this._11.AutoSize = true;
+            this._11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._11.Location = new System.Drawing.Point(102, 20);
+            this._11.Name = "_11";
+            this._11.Size = new System.Drawing.Size(49, 20);
+            this._11.TabIndex = 2;
+            this._11.Text = "11\'li";
+            this._11.UseVisualStyleBackColor = true;
+            this._11.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
+            // 
+            // _8
+            // 
+            this._8.AutoSize = true;
+            this._8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._8.Location = new System.Drawing.Point(54, 20);
+            this._8.Name = "_8";
+            this._8.Size = new System.Drawing.Size(42, 20);
+            this._8.TabIndex = 1;
+            this._8.Text = "8\'li";
+            this._8.UseVisualStyleBackColor = true;
+            this._8.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
+            // 
+            // _7
+            // 
+            this._7.AutoSize = true;
+            this._7.Checked = true;
+            this._7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._7.Location = new System.Drawing.Point(6, 20);
+            this._7.Name = "_7";
+            this._7.Size = new System.Drawing.Size(42, 20);
+            this._7.TabIndex = 0;
+            this._7.TabStop = true;
+            this._7.Text = "7\'li";
+            this._7.UseVisualStyleBackColor = true;
+            this._7.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
+            // 
             // save
             // 
             this.save.BackColor = System.Drawing.Color.BlanchedAlmond;
@@ -285,78 +352,11 @@
             // 
             this.pictureBox1.BackgroundImage = global::TurkishWordParser.Properties.Resources.pencil_inspiration_;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(435, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(504, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(80, 80);
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;
-            // 
-            // symGroup
-            // 
-            this.symGroup.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.symGroup.Controls.Add(this.radioButton1);
-            this.symGroup.Controls.Add(this._11);
-            this.symGroup.Controls.Add(this._8);
-            this.symGroup.Controls.Add(this._7);
-            this.symGroup.Cursor = System.Windows.Forms.Cursors.Default;
-            this.symGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.symGroup.Location = new System.Drawing.Point(87, 3);
-            this.symGroup.Name = "symGroup";
-            this.symGroup.Size = new System.Drawing.Size(229, 46);
-            this.symGroup.TabIndex = 19;
-            this.symGroup.TabStop = false;
-            this.symGroup.Text = "Hece Ölçüsü";
-            // 
-            // _11
-            // 
-            this._11.AutoSize = true;
-            this._11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this._11.Location = new System.Drawing.Point(102, 20);
-            this._11.Name = "_11";
-            this._11.Size = new System.Drawing.Size(49, 20);
-            this._11.TabIndex = 2;
-            this._11.Text = "11\'li";
-            this._11.UseVisualStyleBackColor = true;
-            this._11.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
-            // 
-            // _8
-            // 
-            this._8.AutoSize = true;
-            this._8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this._8.Location = new System.Drawing.Point(54, 20);
-            this._8.Name = "_8";
-            this._8.Size = new System.Drawing.Size(42, 20);
-            this._8.TabIndex = 1;
-            this._8.Text = "8\'li";
-            this._8.UseVisualStyleBackColor = true;
-            this._8.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
-            // 
-            // _7
-            // 
-            this._7.AutoSize = true;
-            this._7.Checked = true;
-            this._7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this._7.Location = new System.Drawing.Point(6, 20);
-            this._7.Name = "_7";
-            this._7.Size = new System.Drawing.Size(42, 20);
-            this._7.TabIndex = 0;
-            this._7.TabStop = true;
-            this._7.Text = "7\'li";
-            this._7.UseVisualStyleBackColor = true;
-            this._7.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton1.Location = new System.Drawing.Point(153, 20);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(73, 20);
-            this.radioButton1.TabIndex = 3;
-            this.radioButton1.Text = "Serbest";
-            this.radioButton1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
             // 
             // Form1
             // 
@@ -380,9 +380,9 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.symGroup.ResumeLayout(false);
             this.symGroup.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
